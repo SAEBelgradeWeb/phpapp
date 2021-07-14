@@ -2,7 +2,10 @@
 
 class Router {
 
-    public $routes = [];
+    public $routes = [
+        'GET' => [],
+        'POST' => []
+    ];
 
     public static function load($routesFile) {
 
@@ -15,16 +18,21 @@ class Router {
         return $router;
     }
 
-    public function register($routes) {
-        $this->routes = $routes;
+    public function get($uri, $controller) {
+
+        $this->routes['GET'][$uri] = $controller;
 
     }
 
-    public function loadController($uri)
+    public function post($uri, $controller) {
+        $this->routes['POST'][$uri] = $controller;
+    }
+
+    public function loadController($uri, $method)
     {
 
-        if(array_key_exists($uri, $this->routes)) {
-            return $this->routes[$uri];
+        if(array_key_exists($uri, $this->routes[$method])) {
+            return $this->routes[$method][$uri];
         }
 
         throw new Exception('No route found for this URI');
