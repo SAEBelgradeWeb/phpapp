@@ -31,8 +31,14 @@ class Router {
     public function loadController($uri, $method)
     {
 
+
         if(array_key_exists($uri, $this->routes[$method])) {
-            return $this->routes[$method][$uri];
+            $value = $this->routes[$method][$uri];
+            $value = explode('@', $value);
+            $controller = new $value[0];
+            $method = $value[1];
+            return $controller->$method();
+
         }
 
         throw new Exception('No route found for this URI');

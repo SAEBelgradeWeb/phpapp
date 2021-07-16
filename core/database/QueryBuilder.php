@@ -14,4 +14,24 @@ class QueryBuilder
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function insert($tableName, $data)
+    {
+
+        $sql = sprintf(
+            'INSERT INTO %s (%s) VALUES(%s)',
+            $tableName,
+            implode(', ', array_keys($data)),
+            ":" . implode(', :', array_keys($data))
+        );
+
+        try {
+            $query = $this->pdo->prepare($sql);
+
+            $query->execute($data);
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
+            die;
+        }
+    }
 }
