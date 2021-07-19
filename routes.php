@@ -7,3 +7,7 @@ $router->get('about/culture', 'PagesController@aboutCulture');
 $router->get('contact', 'PagesController@contact');
 
 $router->post('tasks', 'PagesController@tasks');
+
+
+$router->get('books', 'BooksController@index');
+$router->get('books/delete', 'BooksController@destroy');

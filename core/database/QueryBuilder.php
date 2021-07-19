@@ -35,4 +35,14 @@ class QueryBuilder
             die;
         }
     }
+
+    public function delete($tableName, $id)
+    {
+        $sql = sprintf("DELETE FROM %s WHERE id='%s'",
+            $tableName, $id
+        );
+
+        $query = $this->pdo->prepare($sql);
+        $query->execute();
+    }
 }
