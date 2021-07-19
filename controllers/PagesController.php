@@ -1,37 +1,41 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Core\App;
+
 class PagesController
 {
 
     public function home()
     {
 
-        $tasks = $app['db']->selectAll('tasks');
+        $tasks = App::get('db')->selectAll('tasks');
 
-        require 'views/index.view.php';
+        return view('index', compact('tasks'));
     }
 
     public function tasks()
     {
-        $app['db']->insert('tasks', $_POST);
+        App::get('db')->insert('tasks', $_POST);
 
-        header('Location: /');
+        return redirect('/');
     }
 
     public function about()
     {
-        require 'views/about.view.php';
+        return view('about');
     }
 
     public function aboutCulture()
     {
-        require 'views/about-culture.view.php';
+        return view('about-culture');
     }
 
     public function contact()
     {
 
         $companyName = "My Company";
-        require_once 'views/contact.view.php';
+        return view('contact', compact('companyName'));
     }
 }

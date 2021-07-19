@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Core;
+
 class Router {
 
     public $routes = [
@@ -35,7 +37,8 @@ class Router {
         if(array_key_exists($uri, $this->routes[$method])) {
             $value = $this->routes[$method][$uri];
             $value = explode('@', $value);
-            $controller = new $value[0];
+            $controller_name= "\\App\\Controllers\\" . $value[0];
+            $controller = new $controller_name;
             $method = $value[1];
             return $controller->$method();
 
