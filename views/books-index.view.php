@@ -1,7 +1,9 @@
 <?php require_once 'partials/header.view.php' ?>
 
 <h1>Books</h1>
-
+<div class="text-end m-3">
+    <a href="/books/create" class="btn btn-primary">Add a Book</a>
+</div>
 <table class="table table-striped">
     <tr>
         <th>ID</th>
@@ -14,7 +16,7 @@
             <td><?= $book->id ?></td>
             <td><?= $book->title ?></td>
             <td><?= $book->author ?></td>
-            <td>Edit | <a href="/books/delete?id=<?= $book->id ?>">Delete</a></td>
+            <td><a href="/books/edit?id=<?= $book->id ?>">Edit</a> | <a href="/books/delete?id=<?= $book->id ?>">Delete</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

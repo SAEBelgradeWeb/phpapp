@@ -44,7 +44,7 @@ class Router {
 
         }
 
-        throw new Exception('No route found for this URI');
+        throw new \Exception('No route found for this URI');
     }
 
 }
