@@ -10,8 +10,12 @@
         </div>
 
         <div class="form-group">
-            <label for="author">Book author</label>
-            <input type="text" name="author" id="author" class="form-control">
+            <label for="author_id">Book author</label>
+            <select name="author_id" id="author_id" class="form-control">
+                <?php foreach ($authors as $author) : ?>
+                    <option value="<?= $author->id ?>"><?= $author->name ?></option>
+                <?php endforeach; ?>
+            </select>
         </div>
 
         <div class="mt-3 mb-3">

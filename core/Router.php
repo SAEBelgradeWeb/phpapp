@@ -11,22 +11,23 @@ class Router {
 
     public static function load($routesFile) {
 
-
         $router = new self;
 
         require $routesFile;
 
-
         return $router;
     }
 
-    public function get($uri, $controller) {
+    public function get($uri, $controller, $auth = false)
+    {
 
         $this->routes['GET'][$uri] = $controller;
 
     }
 
-    public function post($uri, $controller) {
+    public function post($uri, $controller, $auth = false)
+    {
+
         $this->routes['POST'][$uri] = $controller;
     }
 
@@ -45,6 +46,11 @@ class Router {
         }
 
         throw new \Exception('No route found for this URI');
+    }
+
+    public function guard()
+    {
+        return ($_SESSION['user']);
     }
 
 }

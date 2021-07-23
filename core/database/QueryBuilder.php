@@ -18,6 +18,15 @@ class QueryBuilder
         return $query->fetchAll(\PDO::FETCH_OBJ);
     }
 
+    public function selectJoin($tableName1, $tableName2, $field, $connection, $alias)
+    {
+
+        $sql = "SELECT {$tableName1}.*, {$tableName2}.{$field} AS {$alias} FROM {$tableName1} LEFT JOIN {$tableName2} ON {$tableName1}.{$connection} = {$tableName2}.id;";
+        $query = $this->pdo->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(\PDO::FETCH_OBJ);
+    }
+
     public function select($tableName, $filters)
     {
 

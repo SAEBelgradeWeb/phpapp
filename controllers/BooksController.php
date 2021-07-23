@@ -13,14 +13,16 @@ class BooksController
 
     public function index()
     {
-        $books = App::get('db')->selectAll('books');
+        $books = App::get('db')->selectJoin('books', 'authors', 'name', 'author_id', 'author_name');
 
         return view('books-index', compact('books'));
     }
 
     public function create()
     {
-        return view('books-create');
+        $authors =  App::get('db')->selectAll('authors');
+
+        return view('books-create', compact('authors'));
     }
 
     public function store()
