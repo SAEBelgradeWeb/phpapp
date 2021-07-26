@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Core\App;
+use App\Core\Mail;
+
 
 class AuthController
 {
@@ -25,6 +27,9 @@ class AuthController
         $user['password'] = md5($user['password']);
 
         App::get('db')->insert('users', $user);
+
+        Mail::send($user['email'], 'Subject', 'Message');
+
 
         return redirect('books');
     }
