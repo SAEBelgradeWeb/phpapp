@@ -1,6 +1,6 @@
 <?php require_once 'partials/header.view.php' ?>
 
-<h1>Register</h1>
+<h1>Login</h1>
 
 <form action="/login" method="POST">
 
